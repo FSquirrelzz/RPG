@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -17,13 +18,14 @@ namespace API.Controllers
     public class AccountController : BaseApiController
     {
         private readonly DataContext _context;
-
-        public AccountController(DataContext context)
+        private readonly ITokenService _tokenService;
+        public AccountController(DataContext context,ITokenService tokenService)
         {
-            _context=context;
+            _context = context;
+            _tokenService = tokenService;
         }
         [HttpPost("register")]
-        public async Task<ActionResult<AppUser>> Register(RegisterDTO registerDTO)
+        public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
         {
             if(await UserExist(registerDTO.Username))
             {
@@ -39,10 +41,14 @@ namespace API.Controllers
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            return user;
+            return new UserDTO
+            {
+                Username=user.UserName,
+                Token=_tokenService.CreateToken(user)
+            };
         }
         [HttpPost("login")]
-        public async Task<ActionResult<AppUser>> Login(LoginDTO loginDTO)
+        public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
             var user = await this._context.Users.SingleOrDefaultAsync(x=>x.UserName.ToLower()==loginDTO.Username.ToLower());
             if(user==null)
@@ -59,7 +65,10 @@ namespace API.Controllers
                     return Unauthorized("Invalid Password");
                 }
             }
-            return user;
+            return new UserDTO{
+                Username=user.UserName,
+                Token=_tokenService.CreateToken(user)
+            };
         }
         private async Task<bool> UserExist(string username)
         {
