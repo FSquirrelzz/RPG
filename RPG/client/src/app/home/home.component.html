@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <div *ngIf="!registerMode" style="text-align: center;">
+    <h1>League of Ancients</h1>
+    <p class="lead">Welcome to the number 1 RPG ! Sign up now!</p>
+    <div class="text-center">
+      <button (click)="registerToggle()" class="btn btn-primary btn-lg mr-2">Register</button>
+      <button class="btn btn-info btn-lg ">Learn nore</button>
+    </div>
+  </div>
+
+  <div *ngIf="registerMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <p><app-register (cancelRegister)="cancelRegisterMode($event)"> </app-register></p>
+      </div>
+    </div>
+  </div>
+</div>

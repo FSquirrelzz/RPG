@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { User } from './models/user';
+import { AccountService } from './services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +11,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'League of Ancients';
   users: any;
-  constructor(private http: HttpClient) {}
+  constructor (private accountService : AccountService) {}
   ngOnInit(): void {
-    this.getUsers();
+    this.setCurrentUser();
+  }
+  setCurrentUser()
+  {
+    const userFromLS:any = localStorage.getItem('user');
+    const user:User = JSON.parse(userFromLS);
+    this.accountService.setCurrentUser(user);
   }
 
-  getUsers() {
-    this.http.get('https://localhost:7216/api/users').subscribe({
-      next: (n) => {
-        this.users=n;
-      },
-      error: (e) => {
-        console.log(e);
-      },
-      complete: () => {
-        console.log('complete');
-      },
-    });
-  }
 }
