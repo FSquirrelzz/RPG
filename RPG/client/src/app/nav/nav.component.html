@@ -3,15 +3,15 @@
     <a class="navbar-brand" href="#">Dating App</a>
 
 
-    <ul class="navbar-nav mr-auto">
+    <ul *ngIf="currentUser$|async" class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/members">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Profile</a>
+        <a class="nav-link " routerLinkActive="active" routerLink="/lists">Fight</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="#">Fight</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Other thing</a>
       </li>
     </ul>
     <div class="dropdown" *ngIf="currentUser$ | async" dropdown>
