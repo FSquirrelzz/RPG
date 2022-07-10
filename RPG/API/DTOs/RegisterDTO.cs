@@ -12,7 +12,7 @@ namespace API.DTOs
         [StringLength(20, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 20 characters")]
         public string Username {get;set;}
         [Required]
-        [StringLength(16,MinimumLength=8,ErrorMessage="You must specify a password between 8 and 16 characters")]
+        [StringLength(32,MinimumLength=8,ErrorMessage="You must specify a password between 8 and 32 characters")]
         public string Password {get;set;}
     }
 }

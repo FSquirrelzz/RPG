@@ -8,30 +8,33 @@ import { NavComponent } from './nav/nav.component'
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ToastrModule } from 'ngx-toastr';
+import { CoreModule } from './modules/core.module';
+import { MembersModule } from './modules/members.module';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
     RegisterComponent,
-    MemberListComponent,
-    MemberDetailComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    TestErrorsComponent,
+    NotFoundComponent
   ],
   imports: [
-
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot()
+    CoreModule,
+    MembersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
