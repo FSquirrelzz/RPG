@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,5 +20,8 @@ namespace API.Entities
         public int Speed { get; set; }
         public int Critical { get; set; }
         public int CriticalDamage { get; set; }
+        public int IconID { get; set; }
+        public Icon Icon{get;set;}
+
     }
 }

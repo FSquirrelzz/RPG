@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220710085157_ProfessionAddition")]
+    partial class ProfessionAddition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
@@ -55,7 +57,7 @@ namespace API.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("API.Entities.Character", b =>
+            modelBuilder.Entity("API.Entities.Profession", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -73,14 +75,10 @@ namespace API.Data.Migrations
                     b.Property<int>("Defense")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("HP")
+                    b.Property<int>("Gold")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("IconID")
+                    b.Property<int>("HP")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Level")
@@ -104,37 +102,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("IconID")
-                        .IsUnique();
-
-                    b.ToTable("Character");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Character");
-                });
-
-            modelBuilder.Entity("API.Entities.Icon", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Icon");
-                });
-
-            modelBuilder.Entity("API.Entities.Profession", b =>
-                {
-                    b.HasBaseType("API.Entities.Character");
-
-                    b.Property<int>("Gold")
-                        .HasColumnType("INTEGER");
-
-                    b.HasDiscriminator().HasValue("Profession");
+                    b.ToTable("Profession");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
@@ -146,23 +114,6 @@ namespace API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Profession");
-                });
-
-            modelBuilder.Entity("API.Entities.Character", b =>
-                {
-                    b.HasOne("API.Entities.Icon", "Icon")
-                        .WithOne("Character")
-                        .HasForeignKey("API.Entities.Character", "IconID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Icon");
-                });
-
-            modelBuilder.Entity("API.Entities.Icon", b =>
-                {
-                    b.Navigation("Character")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("API.Entities.Profession", b =>

@@ -8,6 +8,6 @@ namespace API.Entities
     public class Profession:Character
     {
         public int Gold{get;set;}
-
+        public ICollection<AppUser> AppUsers{get;set;}
     }
 }
