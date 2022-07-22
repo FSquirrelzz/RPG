@@ -16,7 +16,6 @@ import { CoreModule } from './modules/core.module';
 import { MembersModule } from './modules/members.module';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { PopulateDbComponent } from './populate-db/populate-db.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,8 +25,7 @@ import { PopulateDbComponent } from './populate-db/populate-db.component';
     ListsComponent,
     MessagesComponent,
     TestErrorsComponent,
-    NotFoundComponent,
-    PopulateDbComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

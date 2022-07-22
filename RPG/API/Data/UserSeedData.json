@@ -1,0 +1,33 @@
+[
+    {
+        "UserName":"Warrior",
+        "Gender":"Male",
+        "Created":"2022-07-15", 
+        "LastActive":"2022-07-16", 
+        "ProfessionId":1
+    },
+    {
+        "UserName":"Thief",
+        "Gender":"Male",
+        "Created":"2022-07-15", 
+        "LastActive":"2022-07-16", 
+        "ProfessionId":2
+
+    },
+    {
+        "UserName":"Archer",
+        "Gender":"Male",
+        "Created":"2022-07-15", 
+        "LastActive":"2022-07-16", 
+        "ProfessionId":3
+
+    },
+    {
+        "UserName":"Mage",
+        "Gender":"Male",
+        "Created":"2022-07-15", 
+        "LastActive":"2022-07-16", 
+        "ProfessionId":4
+
+    }
+]

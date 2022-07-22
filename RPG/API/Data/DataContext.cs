@@ -7,8 +7,10 @@ namespace API.Data
     {
         public DataContext(DbContextOptions options) : base(options)
         {
-
         }
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<Character> Character { get; set; }
+        public DbSet<Icon> Icon { get; set; }
+
     }
 }
